@@ -359,57 +359,47 @@ function createButtonsOnInitialize() {
 
     let selectEditor = document.createElement('div');
     selectEditor.setAttribute('class', 'toggle2');
-    selectEditor.onclick = function () { toggleTabs(selectEditor, selectInitialState, selectExecution, selectExamples, true, false, false, false) };
+    selectEditor.onclick = function () { toggleTabs(selectEditor, selectInitialState, selectExecution, true, false, false) };
     selectEditor.innerText = 'Editor';
     document.getElementById('editor_container').insertBefore(selectEditor, editor);
 
     let selectInitialState = document.createElement('div');
     selectInitialState.setAttribute('class', 'toggle1');
-    selectInitialState.onclick = function () { toggleTabs(selectEditor, selectInitialState, selectExecution, selectExamples, false, true, false, false) }; 
+    selectInitialState.onclick = function () { toggleTabs(selectEditor, selectInitialState, selectExecution,  false, true) };
     selectInitialState.innerText = 'Initial State';
     document.getElementById('editor_container').insertBefore(selectInitialState, editor);
 
     let selectExecution = document.createElement('div');
     selectExecution.setAttribute('class', 'toggle1');
-    selectExecution.onclick = function () { toggleTabs(selectEditor, selectInitialState, selectExecution, selectExamples, false, false, true, false) };
+    selectExecution.onclick = function () { toggleTabs(selectEditor, selectInitialState, selectExecution, false, false, true) };
     selectExecution.innerText = 'Execution';
     document.getElementById('editor_container').insertBefore(selectExecution, editor);
 
-    let selectExamples = document.createElement('div');
-    selectExamples.setAttribute('class', 'toggle1');
-    selectExamples.onclick = function () { toggleTabs(selectEditor, selectInitialState, selectExecution, selectExamples, false, false, false, true) };
-    selectExamples.innerText = 'Examples';
-    document.getElementById('editor_container').insertBefore(selectExamples, editor);
+    //let selectExamples = document.createElement('div');
+    //selectExamples.setAttribute('class', 'toggle1');
+    //selectExamples.onclick = function () { toggleTabs(selectEditor, selectInitialState, selectExecution, selectExamples, false, false, false, true) };
+    //selectExamples.innerText = 'Examples';
+    //document.getElementById('editor_container').insertBefore(selectExamples, editor);
 
-    toggleTabs(selectEditor, selectInitialState, selectExecution, selectExamples, true, false, false)
+    toggleTabs(selectEditor, selectInitialState, selectExecution, true, false, false)
 }
 
-function toggleTabs(editorButton, stateButton, executionButton, examplesButton, setEditor, setState, setExecution, setExamples) {
+function toggleTabs(editorButton, stateButton, executionButton,  setEditor, setState, setExecution) {
     document.getElementById('editor').hidden = !setEditor;
     document.getElementById('initial').hidden = !setState;
     document.getElementById('execute').hidden = !setExecution;
-    document.getElementById('example').hidden= !setExamples;
     if (setEditor) {
         editorButton.setAttribute('class', 'toggle2');
         stateButton.setAttribute('class', 'toggle1');
         executionButton.setAttribute('class', 'toggle1');
-        examplesButton.setAttribute('class', 'toggle1');
     } else if (setState){
         editorButton.setAttribute('class', 'toggle1');
         stateButton.setAttribute('class', 'toggle2');
         executionButton.setAttribute('class', 'toggle1');
-        examplesButton.setAttribute('class', 'toggle1');
     } else if (setExecution){
         editorButton.setAttribute('class', 'toggle1');
         stateButton.setAttribute('class', 'toggle1');
         executionButton.setAttribute('class', 'toggle2');
-        examplesButton.setAttribute('class', 'toggle1');
-    } else if (setExamples) {
-        editorButton.setAttribute('class', 'toggle1');
-        stateButton.setAttribute('class', 'toggle1');
-        executionButton.setAttribute('class', 'toggle1');
-        examplesButton.setAttribute('class', 'toggle2');
-
     }
 }
 
@@ -791,7 +781,7 @@ function removeSet() {
 
 
 /**
- * Creates a set in the model. Returns true if the set was added, false otherwise 
+ * Creates a set in the model. Returns true if the set was added, false otherwise
  */
 function createSetInModel(setName) {
     var newSet = { id: setName, elements: new Set() };
@@ -1032,7 +1022,7 @@ function addRuleUI(addButtonID, newRule) {
     deleteRuleButton.innerText = 'Delete Rule';
     ruleNameDiv.appendChild(deleteRuleButton);
 
-    //Creates a div which wraps the conditions and add divs 
+    //Creates a div which wraps the conditions and add divs
     var parentContainer = document.createElement('div');
     parentContainer.id = 'r' + newRule.index;
     ruleContainerDiv.appendChild(parentContainer);
@@ -1245,7 +1235,7 @@ function selectPredicateArgument(ruleSets, argument) {
 }
 
 /**
- * returns false if variable is not in any set contained in ruleSets, 
+ * returns false if variable is not in any set contained in ruleSets,
  * returns true if variable is in some set in ruleSets
  */
 function varInRules(variable, ruleSets) {
@@ -1669,7 +1659,7 @@ function removePredicate(predID, predicateID, predicateSet) {
 }
 
 /**
- * returns the element with ID elementID from the set 
+ * returns the element with ID elementID from the set
  * operatingSet. Returns false if no element with
  * ID elementID exists in operatingSet
  */
@@ -1681,7 +1671,7 @@ function getSetElementByID(elementID, operatingSet) {
 }
 
 /**
- * returns the element with ID elementID from the set 
+ * returns the element with ID elementID from the set
  * operatingSet. Returns false if no element with
  * ID elementID exists in operatingSet
  */
